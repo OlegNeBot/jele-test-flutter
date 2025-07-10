@@ -46,3 +46,8 @@ app.*.map.json
 
 # Ignoring pubspec.lock
 pubspec.lock
+
+# Ignoring FB options to hide credentials
+lib/firebase_options.dart
+/android/app/google-services.json
+firebase.json
