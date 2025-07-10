@@ -15,7 +15,7 @@ class _MessagingPageState extends State<MessagingPage> {
   bool _isLoading = false;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
 
     setState(() {
@@ -24,13 +24,17 @@ class _MessagingPageState extends State<MessagingPage> {
 
     _messagingService = FbMessagingService();
 
-    _deviceToken = await _messagingService.getToken();
+    _messagingService.getToken().then(
+      (value) => setState(() {
+        _deviceToken = value;
+      }),
+    );
 
-    await _messagingService.init();
-
-    setState(() {
-      _isLoading = false;
-    });
+    _messagingService.init().then(
+      (_) => setState(() {
+        _isLoading = false;
+      }),
+    );
   }
 
   @override
